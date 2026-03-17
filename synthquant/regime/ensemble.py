@@ -37,7 +37,7 @@ class EnsembleRegimeDetector:
         self.method = method
         self.n_regimes = n_regimes
 
-    def fit(self, features: np.ndarray) -> "EnsembleRegimeDetector":
+    def fit(self, features: np.ndarray) -> EnsembleRegimeDetector:
         """Fit all base detectors.
 
         Args:

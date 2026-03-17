@@ -32,7 +32,8 @@ def antithetic_variates(paths: np.ndarray) -> np.ndarray:
     log_returns = np.diff(np.log(paths), axis=1)
     antithetic_log_returns = -log_returns
     anti_log_paths = np.cumsum(antithetic_log_returns, axis=1)
-    anti_paths = S0 * np.exp(np.concatenate([np.zeros((paths.shape[0], 1)), anti_log_paths], axis=1))
+    zeros = np.zeros((paths.shape[0], 1))
+    anti_paths = S0 * np.exp(np.concatenate([zeros, anti_log_paths], axis=1))
     combined = np.concatenate([paths, anti_paths], axis=0)
     logger.debug(f"Antithetic variates: {paths.shape[0]} -> {combined.shape[0]} paths")
     return combined

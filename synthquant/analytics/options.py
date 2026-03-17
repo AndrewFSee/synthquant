@@ -112,7 +112,7 @@ class MCOptionPricer:
         terminal = paths[:, -1]
         S0 = paths[:, 0]
 
-        if B > float(np.mean(S0)):  # Up barrier
+        if float(np.mean(S0)) < B:  # Up barrier
             barrier_hit = np.any(paths >= B, axis=1)
         else:  # Down barrier
             barrier_hit = np.any(paths <= B, axis=1)
@@ -122,7 +122,7 @@ class MCOptionPricer:
         elif barrier_type == "knock_in":
             active = barrier_hit
         else:
-            raise ValueError(f"barrier_type must be 'knock_out' or 'knock_in'")
+            raise ValueError("barrier_type must be 'knock_out' or 'knock_in'")
 
         if option_type == "call":
             payoffs = np.where(active, np.maximum(terminal - K, 0.0), 0.0)
@@ -236,7 +236,9 @@ class ImpliedVolSurface:
                     continue
                 try:
                     iv = brentq(
-                        lambda sigma: _bs_call(S, K, T, r, sigma) - mkt_price,
+                        lambda sigma, _K=K, _T=T, _mp=mkt_price: (  # noqa: E731
+                            _bs_call(S, _K, _T, r, sigma) - _mp
+                        ),
                         1e-6,
                         10.0,
                         xtol=1e-6,

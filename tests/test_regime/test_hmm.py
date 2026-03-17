@@ -61,7 +61,7 @@ def test_get_regime_params_structure(fitted_detector: HMMRegimeDetector) -> None
     """get_regime_params() returns a dict with 'mu' and 'sigma' per regime."""
     params = fitted_detector.get_regime_params()
     assert len(params) == 2
-    for regime_id, p in params.items():
+    for _regime_id, p in params.items():
         assert "mu" in p
         assert "sigma" in p
         assert isinstance(p["mu"], float)

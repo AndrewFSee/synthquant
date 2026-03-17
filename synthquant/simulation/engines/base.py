@@ -36,5 +36,5 @@ class SimulationEngine(ABC):
         """
         ...
 
-    def _validate_params(self, **params: object) -> None:
+    def _validate_params(self, **params: object) -> None:  # noqa: B027
         """Validate parameters. Override in subclasses."""

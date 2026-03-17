@@ -38,7 +38,7 @@ class ClusteringRegimeDetector:
         self.random_state = random_state
         self._model: Any = None
 
-    def fit(self, features: np.ndarray) -> "ClusteringRegimeDetector":
+    def fit(self, features: np.ndarray) -> ClusteringRegimeDetector:
         """Fit the GMM to a feature matrix.
 
         Args:

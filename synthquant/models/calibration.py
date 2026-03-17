@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 
@@ -97,7 +98,7 @@ class MLECalibrator(Calibrator):
             scipy_bounds = [bounds.get(k, (None, None)) for k in param_names]
 
         def neg_ll(x: np.ndarray) -> float:
-            p = dict(zip(param_names, x))
+            p = dict(zip(param_names, x, strict=False))
             return -log_likelihood_fn(**p)
 
         result = minimize(
@@ -108,7 +109,7 @@ class MLECalibrator(Calibrator):
             options=self.options,
         )
 
-        fitted = dict(zip(param_names, result.x))
+        fitted = dict(zip(param_names, result.x, strict=False))
         logger.info(f"MLE calibration: success={result.success}, nll={result.fun:.6f}")
         return CalibratedParams(
             params=fitted,

@@ -73,7 +73,6 @@ class RoughBergomi:
         alpha = self.H - 0.5  # memory parameter
 
         # Build fractional kernel weights (Gamma approximation)
-        t_grid = np.arange(1, n_steps + 1) * dt
         kernel = np.zeros(n_steps)
         kernel[0] = dt**alpha / (1 + alpha) if alpha > -1 else 1.0
         for j in range(1, n_steps):

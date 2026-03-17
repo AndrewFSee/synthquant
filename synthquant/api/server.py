@@ -6,17 +6,6 @@ import logging
 
 import numpy as np
 
-logger = logging.getLogger(__name__)
-
-try:
-    from fastapi import FastAPI, HTTPException
-    from fastapi.middleware.cors import CORSMiddleware
-except ImportError as e:
-    raise ImportError(
-        "FastAPI is required for the API server. "
-        "Install with: pip install synthquant[api]"
-    ) from e
-
 from synthquant import __version__
 from synthquant.analytics.risk_metrics import (
     conditional_var,
@@ -35,9 +24,20 @@ from synthquant.simulation.engines.gbm import GBMEngine
 from synthquant.simulation.engines.heston import HestonEngine
 from synthquant.simulation.engines.merton_jd import MertonJDEngine
 
+logger = logging.getLogger(__name__)
+
+try:
+    from fastapi import FastAPI, HTTPException
+    from fastapi.middleware.cors import CORSMiddleware
+except ImportError as e:
+    raise ImportError(
+        "FastAPI is required for the API server. "
+        "Install with: pip install synthquant[api]"
+    ) from e
+
 app = FastAPI(
     title="SynthQuant API",
-    description="Production-grade synthetic financial data generation and probabilistic forecasting",
+    description="Synthetic financial data generation and probabilistic forecasting",
     version=__version__,
 )
 
@@ -197,7 +197,9 @@ async def risk(
     terminal = paths[:, -1]
     log_returns = np.log(terminal / S0)
     drawdowns = max_drawdown_distribution(paths)
-    sharpe = float(np.mean(log_returns) / (np.std(log_returns) + 1e-12) * np.sqrt(252 / paths.shape[1]))
+    sharpe = float(
+        np.mean(log_returns) / (np.std(log_returns) + 1e-12) * np.sqrt(252 / paths.shape[1])
+    )
 
     return RiskMetrics(
         symbol=symbol,

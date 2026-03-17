@@ -52,7 +52,6 @@ class RegimeSignalGenerator:
         n = len(regimes)
         thresholds = thresholds or {}
         entry_thresh = thresholds.get("entry", 0.0)
-        exit_thresh = thresholds.get("exit", 0.0)
 
         signal = np.zeros(n, dtype=int)
 

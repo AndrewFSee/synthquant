@@ -95,7 +95,7 @@ class HestonEngine(SimulationEngine):
                 beta = 2 / (m[mask_high] * (1 + psi[mask_high]))
                 U = rng.random(np.sum(mask_high))
                 V_next[mask_high] = np.where(
-                    U <= p,
+                    p >= U,
                     0.0,
                     np.log((1 - p) / (1 - U)) / beta,
                 )

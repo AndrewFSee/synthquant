@@ -41,7 +41,7 @@ class HMMRegimeDetector:
         self.random_state = random_state
         self._model: Any = None
 
-    def fit(self, returns: np.ndarray) -> "HMMRegimeDetector":
+    def fit(self, returns: np.ndarray) -> HMMRegimeDetector:
         """Fit the HMM to a return series.
 
         Args:

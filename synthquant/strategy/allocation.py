@@ -71,7 +71,6 @@ class MeanCVaROptimizer:
 
         bounds = [(0, None)] * n_assets + [(None, None)] + [(0, None)] * n_scenarios
 
-        constraints = []
         if target_return is not None:
             A_ret = np.zeros((1, n_vars))
             A_ret[0, :n_assets] = -np.mean(R, axis=0) * 252
@@ -121,9 +120,7 @@ class RiskParityAllocator:
         w = np.ones(n) / n
 
         for _ in range(self.max_iter):
-            port_var = float(w @ sigma @ w)
             mrc = sigma @ w  # Marginal Risk Contribution
-            rc = w * mrc / port_var  # Risk Contribution fractions
             # Update weights proportional to inverse marginal risk
             w_new = w / mrc
             w_new /= w_new.sum()

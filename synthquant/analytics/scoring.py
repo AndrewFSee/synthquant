@@ -34,7 +34,6 @@ class ForecastScorer:
         """
         F = np.asarray(forecasts, dtype=float)
         y = np.asarray(observations, dtype=float)
-        n_members = F.shape[1]
 
         # CRPS = E[|X - y|] - 0.5 * E[|X - X'|]
         mae = np.mean(np.abs(F - y[:, np.newaxis]), axis=1)
@@ -66,7 +65,7 @@ class ForecastScorer:
         """
         F = np.asarray(forecasts, dtype=float)
         y = np.asarray(observations, dtype=float)
-        pit = np.mean(F <= y[:, np.newaxis], axis=1)
+        pit = np.mean(y[:, np.newaxis] >= F, axis=1)
         counts, edges = np.histogram(pit, bins=n_bins, range=(0, 1))
         logger.debug(f"PIT histogram computed: {n_bins} bins")
         return counts, edges

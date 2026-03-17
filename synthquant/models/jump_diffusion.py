@@ -108,7 +108,7 @@ class MertonJumpDiffusion:
         Returns:
             European call option price.
         """
-        from math import factorial, exp
+        from math import exp, factorial
 
         price = 0.0
         lambda_prime = self.lambda_j * (1 + self._kappa_j)

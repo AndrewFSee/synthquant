@@ -28,7 +28,7 @@ class EmpiricalDistribution:
         self._samples: np.ndarray | None = None
         self._kde: stats.gaussian_kde | None = None
 
-    def fit(self, paths: np.ndarray, horizon: int | None = None) -> "EmpiricalDistribution":
+    def fit(self, paths: np.ndarray, horizon: int | None = None) -> EmpiricalDistribution:
         """Fit the distribution to path terminal (or horizon) values.
 
         Args:

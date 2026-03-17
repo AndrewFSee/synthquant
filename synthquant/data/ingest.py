@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from abc import ABC, abstractmethod
 from datetime import date, datetime
-from typing import Optional
 
 import pandas as pd
 
@@ -127,7 +126,7 @@ class DataIngestor:
         sources: List of DataSource instances to use (in priority order).
     """
 
-    def __init__(self, sources: Optional[list[DataSource]] = None) -> None:
+    def __init__(self, sources: list[DataSource] | None = None) -> None:
         self._sources = sources or [YFinanceSource()]
 
     def fetch(

@@ -1,4 +1,7 @@
-"""SynthQuant: Production-grade synthetic financial data generation and probabilistic forecasting."""
+"""SynthQuant: Production-grade synthetic financial data generation and probabilistic forecasting.
+
+See https://github.com/AndrewFSee/synthquant for full documentation.
+"""
 
 from importlib.metadata import PackageNotFoundError, version
 

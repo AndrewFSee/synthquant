@@ -7,7 +7,6 @@ import pytest
 
 from synthquant.strategy.sizing import CVaROptimalSizer, KellyCriterion, RiskParitySizer
 
-
 # ── Kelly Criterion ────────────────────────────────────────────────────────────
 
 def test_kelly_full_positive_expected_returns() -> None:

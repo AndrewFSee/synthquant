@@ -35,7 +35,7 @@ class MarkovSwitchingGARCH:
         self.switching_mean = switching_mean
         self._result: Any = None
 
-    def fit(self, returns: np.ndarray) -> "MarkovSwitchingGARCH":
+    def fit(self, returns: np.ndarray) -> MarkovSwitchingGARCH:
         """Fit the Markov-Switching model.
 
         Args:

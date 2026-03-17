@@ -52,7 +52,7 @@ class GARCHModel:
         self.dist = dist
         self._result: Any = None
 
-    def fit(self, returns: np.ndarray | pd.Series, scale: float = 100.0) -> "GARCHModel":
+    def fit(self, returns: np.ndarray | pd.Series, scale: float = 100.0) -> GARCHModel:
         """Fit the GARCH model to a return series.
 
         Args:
@@ -136,7 +136,6 @@ class GARCHModel:
             RuntimeError: If model has not been fitted.
         """
         self._check_fitted()
-        rng = np.random.default_rng(random_state)
         paths = np.empty((n_paths, horizon), dtype=float)
         for i in range(n_paths):
             sim = self._result.model.simulate(
