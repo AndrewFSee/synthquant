@@ -60,9 +60,9 @@ class RegimeSignalGenerator:
                 signal[i] = self.regime_signal_map.get(int(r), 0)
         elif forecasts is not None:
             fc = np.asarray(forecasts, dtype=float)
-            signal = np.where(fc > entry_thresh, 1, np.where(fc < -entry_thresh, -1, 0))
+            signal = np.where(fc > entry_thresh, 1, np.where(fc < -entry_thresh, -1, 0))  # type: ignore[assignment]
         else:
-            signal = np.where(regimes == 0, 1, 0)
+            signal = np.where(regimes == 0, 1, 0)  # type: ignore[assignment]
 
         entry = np.zeros(n, dtype=bool)
         exit_sig = np.zeros(n, dtype=bool)

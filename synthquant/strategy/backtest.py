@@ -79,7 +79,7 @@ class WalkForwardBacktest:
         Returns:
             BacktestResults with performance metrics.
         """
-        log_returns = np.log(prices / prices.shift(1)).dropna()
+        log_returns = prices.pct_change().apply(np.log1p).dropna()
         n_periods = len(log_returns)
         n_assets = prices.shape[1]
 

@@ -31,7 +31,7 @@ class GBMEngine(SimulationEngine):
         mu: float = 0.05,
         sigma: float = 0.2,
         random_state: int | np.random.Generator | None = None,
-    ) -> np.ndarray:
+    ) -> np.ndarray:  # type: ignore[override]
         """Simulate GBM paths.
 
         Args:

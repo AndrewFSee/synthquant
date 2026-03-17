@@ -36,7 +36,7 @@ class RoughBergomiEngine(SimulationEngine):
         mu: float = 0.0,
         random_state: int | np.random.Generator | None = None,
         **params: Any,
-    ) -> np.ndarray:
+    ) -> np.ndarray:  # type: ignore[override]
         """Simulate Rough Bergomi asset price paths.
 
         Args:

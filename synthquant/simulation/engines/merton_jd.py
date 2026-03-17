@@ -39,7 +39,7 @@ class MertonJDEngine(SimulationEngine):
         mu_j: float = -0.05,
         sigma_j: float = 0.10,
         random_state: int | np.random.Generator | None = None,
-    ) -> np.ndarray:
+    ) -> np.ndarray:  # type: ignore[override]
         """Simulate Merton JD paths.
 
         Args:

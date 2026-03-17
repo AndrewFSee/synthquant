@@ -75,8 +75,8 @@ class MeanCVaROptimizer:
             A_ret = np.zeros((1, n_vars))
             A_ret[0, :n_assets] = -np.mean(R, axis=0) * 252
             b_ret = np.array([-target_return])
-            A_ub = np.vstack([A_ub, A_ret])
-            b_ub = np.append(b_ub, b_ret)
+            A_ub = np.vstack([A_ub, A_ret])  # type: ignore[assignment]
+            b_ub = np.append(b_ub, b_ret)  # type: ignore[assignment]
 
         result = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds)
 

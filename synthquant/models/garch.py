@@ -15,7 +15,7 @@ __all__ = ["GARCHModel"]
 VolModel = Literal["GARCH", "EGARCH", "GJRGARCH"]
 
 # Maps internal names to arch library vol names and o (GJR) parameter
-_VOL_MAP: dict[str, dict[str, object]] = {
+_VOL_MAP: dict[str, dict[str, Any]] = {
     "GARCH": {"vol": "GARCH", "o": 0},
     "EGARCH": {"vol": "EGARCH", "o": 0},
     "GJRGARCH": {"vol": "GARCH", "o": 1},  # GJR-GARCH uses o=1 in arch
@@ -76,11 +76,11 @@ class GARCHModel:
         spec = _VOL_MAP[self.vol_model]
         model = arch_model(
             r,
-            vol=str(spec["vol"]),
+            vol=str(spec["vol"]),  # type: ignore[arg-type]
             p=self.p,
             o=int(spec["o"]),
             q=self.q,
-            dist=self.dist,
+            dist=self.dist,  # type: ignore[arg-type]
         )
         self._result = model.fit(disp="off")
         self._scale = scale

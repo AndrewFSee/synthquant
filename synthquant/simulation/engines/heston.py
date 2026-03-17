@@ -34,7 +34,7 @@ class HestonEngine(SimulationEngine):
         sigma_v: float = 0.3,
         rho: float = -0.7,
         random_state: int | np.random.Generator | None = None,
-    ) -> np.ndarray:
+    ) -> np.ndarray:  # type: ignore[override]
         """Simulate Heston price paths via QE scheme.
 
         Args:
