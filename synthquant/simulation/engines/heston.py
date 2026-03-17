@@ -21,7 +21,7 @@ class HestonEngine(SimulationEngine):
     negative-variance artefact of naive Euler discretisation.
     """
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,

@@ -22,7 +22,7 @@ class GBMEngine(SimulationEngine):
     where Z ~ N(0,1).
     """
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,

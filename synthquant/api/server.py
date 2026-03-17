@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from typing import Any
 
 import numpy as np
 
@@ -79,7 +80,7 @@ async def simulate(request: SimulationRequest) -> ForecastResponse:
         )
 
     dt = request.horizon / request.n_steps
-    params = {"S0": 100.0, "mu": 0.05, "sigma": 0.20}
+    params: dict[str, Any] = {"S0": 100.0, "mu": 0.05, "sigma": 0.20}
     params.update(request.parameters)
     params["random_state"] = request.random_seed
 

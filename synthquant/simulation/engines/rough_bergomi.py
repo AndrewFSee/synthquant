@@ -23,7 +23,7 @@ class RoughBergomiEngine(SimulationEngine):
     V(t) = xi * exp(eta * W^H(t) - 0.5 * eta^2 * t^{2H})
     """
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,

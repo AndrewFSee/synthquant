@@ -39,7 +39,7 @@ class RegimeSwitchingEngine(SimulationEngine):
         self.initial_regime = initial_regime
         self._n_regimes = len(regime_params)
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,
