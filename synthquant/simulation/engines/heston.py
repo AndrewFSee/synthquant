@@ -21,7 +21,7 @@ class HestonEngine(SimulationEngine):
     negative-variance artefact of naive Euler discretisation.
     """
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,
@@ -34,7 +34,7 @@ class HestonEngine(SimulationEngine):
         sigma_v: float = 0.3,
         rho: float = -0.7,
         random_state: int | np.random.Generator | None = None,
-    ) -> np.ndarray:  # type: ignore[override]
+    ) -> np.ndarray:
         """Simulate Heston price paths via QE scheme.
 
         Args:

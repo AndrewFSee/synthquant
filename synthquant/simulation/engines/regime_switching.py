@@ -39,7 +39,7 @@ class RegimeSwitchingEngine(SimulationEngine):
         self.initial_regime = initial_regime
         self._n_regimes = len(regime_params)
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,
@@ -47,7 +47,7 @@ class RegimeSwitchingEngine(SimulationEngine):
         S0: float = 100.0,
         random_state: int | np.random.Generator | None = None,
         **params: Any,
-    ) -> np.ndarray:  # type: ignore[override]
+    ) -> np.ndarray:
         """Simulate regime-switching GBM paths.
 
         Args:

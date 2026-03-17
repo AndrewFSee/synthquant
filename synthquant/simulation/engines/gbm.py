@@ -22,7 +22,7 @@ class GBMEngine(SimulationEngine):
     where Z ~ N(0,1).
     """
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,
@@ -31,7 +31,7 @@ class GBMEngine(SimulationEngine):
         mu: float = 0.05,
         sigma: float = 0.2,
         random_state: int | np.random.Generator | None = None,
-    ) -> np.ndarray:  # type: ignore[override]
+    ) -> np.ndarray:
         """Simulate GBM paths.
 
         Args:
