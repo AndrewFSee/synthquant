@@ -27,7 +27,7 @@ class MertonJDEngine(SimulationEngine):
       - kappa_j = exp(mu_j + sigma_j^2/2) - 1
     """
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,

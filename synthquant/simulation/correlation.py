@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
+from typing import Any
 
 import numpy as np
 from scipy import stats
@@ -76,7 +77,7 @@ class CopulaSimulator:
         marginals: list[Callable[[np.ndarray], np.ndarray]],
         n_paths: int,
         copula_type: str = "gaussian",
-        **copula_kwargs: object,
+        **copula_kwargs: Any,
     ) -> np.ndarray:
         """Generate correlated returns by applying marginal inverse CDFs.
 

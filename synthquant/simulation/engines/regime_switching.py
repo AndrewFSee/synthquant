@@ -39,7 +39,7 @@ class RegimeSwitchingEngine(SimulationEngine):
         self.initial_regime = initial_regime
         self._n_regimes = len(regime_params)
 
-    def simulate(
+    def simulate(  # type: ignore[override]
         self,
         n_paths: int,
         n_steps: int,
@@ -72,7 +72,7 @@ class RegimeSwitchingEngine(SimulationEngine):
             stat_idx = np.argmin(np.abs(eigenvalues - 1.0))
             stat_dist = np.real(eigenvectors[:, stat_idx])
             stat_dist = stat_dist / stat_dist.sum()
-            regimes = rng.choice(self._n_regimes, size=n_paths, p=stat_dist)
+            regimes = rng.choice(self._n_regimes, size=n_paths, p=stat_dist)  # type: ignore[assignment]
 
         S = np.empty((n_paths, n_steps + 1))
         S[:, 0] = S0

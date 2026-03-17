@@ -79,7 +79,7 @@ class WalkForwardBacktest:
         Returns:
             BacktestResults with performance metrics.
         """
-        log_returns = np.log(prices / prices.shift(1)).dropna()
+        log_returns = prices.pct_change().apply(np.log1p).dropna()
         n_periods = len(log_returns)
         n_assets = prices.shape[1]
 
@@ -110,7 +110,7 @@ class WalkForwardBacktest:
                 tc = 0.0
 
             # Portfolio return for this period
-            period_ret = float(log_returns.iloc[t].values @ current_weights) - tc
+            period_ret = float(log_returns.iloc[t].to_numpy(dtype=float) @ current_weights) - tc
             pnl_list.append(period_ret)
             pnl_dates.append(log_returns.index[t])
 
